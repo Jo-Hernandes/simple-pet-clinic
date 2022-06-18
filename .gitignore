@@ -38,14 +38,14 @@ captures/
 
 # IntelliJ
 *.iml
-android/.idea/workspace.xml
-android/.idea/tasks.xml
-android/.idea/gradle.xml
-android/.idea/misc.xml
-android/.idea/gradle.xml
-android/.idea/assetWizardSettings.xml
-android/.idea/dictionaries
-android/.idea/libraries
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/misc.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
 
 
 
@@ -88,9 +88,3 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
-
-
-#api-server
-api-server/.DS_Store
-api-server/__pycache__/
-
