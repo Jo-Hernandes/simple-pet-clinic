@@ -49,7 +49,7 @@ dependencies {
 
     implementation project(":HttpService")
 
-    implementation deps.core
+    implementation deps.androidx.core
     implementation deps.androidx.material
     implementation deps.androidx.runtime
     implementation deps.androidx.activity_compose
