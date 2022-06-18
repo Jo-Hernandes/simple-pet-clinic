@@ -1,0 +1,63 @@
+/*
+ * Copyright 2020 ArcTouch LLC.
+ *
+ * All rights reserved.
+ *
+ * This file, its contents, concepts, methods, behavior, and operation
+ * (collectively the "Software") are protected by trade secret, patent,
+ * and copyright laws. The use of the Software is governed by a license
+ * agreement. Disclosure of the Software to third parties, in any form,
+ * in whole or in part, is expressly prohibited except as authorized by
+ * the license agreement.
+ */
+
+ext.deps = [:]
+def versions = [:]
+versions.android_core = '1.8.0'
+versions.compose = '1.1.0-beta01'
+versions.material = '1.0.0-alpha13'
+versions.runtime = '2.4.1'
+versions.activity_compose = '1.3.1'
+versions.junit = "4.13.2"
+versions.junit_ext = '1.1.3'
+versions.espresso = '3.4.0'
+
+ext.compose_version = versions.compose
+
+def deps = [:]
+
+def androidx = [:]
+androidx.material = "androidx.compose.material3:material3:$versions.material"
+androidx.runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$versions.runtime"
+androidx.activity_compose = "androidx.activity:activity-compose:$versions.activity_compose"
+deps.androidx = androidx
+
+def compose = [:]
+compose.ui = "androidx.compose.ui:ui:$versions.compose"
+compose.tooling = "androidx.compose.ui:ui-tooling-preview:$versions.compose"
+compose.testing = "androidx.compose.ui:ui-test-junit4:$versions.compose"
+compose.manifest = "androidx.compose.ui:ui-test-manifest:$versions.compose"
+deps.compose = compose
+
+def test = [:]
+test.junit = "junit:junit:$versions.junit"
+test.junit_ext = "androidx.test.ext:junit:$versions.junit_ext"
+test.espresso = "androidx.test.espresso:espresso-core:$versions.espresso"
+deps.test = test
+
+deps.core = "androidx.core:core-ktx:$versions.android_core"
+
+
+ext.deps = deps
+
+def build_versions = [:]
+build_versions.min_sdk = 32
+build_versions.target_sdk = 32
+ext.build_versions = build_versions
+
+static def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.mavenCentral()
+}
+
+ext.addRepos = this.&addRepos

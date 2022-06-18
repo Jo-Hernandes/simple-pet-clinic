@@ -1,0 +1,66 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdkVersion build_versions.target_sdk
+
+    defaultConfig {
+        applicationId "com.jonathas.petclinic"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(":HttpService")
+
+    implementation deps.core
+    implementation deps.androidx.material
+    implementation deps.androidx.runtime
+    implementation deps.androidx.activity_compose
+
+    implementation deps.compose.ui
+    implementation deps.compose.tooling
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.junit_ext
+    androidTestImplementation deps.test.espresso
+    androidTestImplementation deps.compose.testing
+    debugImplementation deps.compose.manifest
+
+}
