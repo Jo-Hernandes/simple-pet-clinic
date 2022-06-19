@@ -1,7 +1,10 @@
 package com.jonathas.httpservice.model
 
-data class SettingsModel(
-    val isCallEnabled: Boolean,
-    val isChatEnabled: Boolean,
-    val workHours: String
-)
+import kotlinx.serialization.Serializable
+
+@Serializable
+class SettingsModel {
+    val isCallEnabled: Boolean? = null
+    val isChatEnabled: Boolean? = null
+    val workHours: String = ""
+}

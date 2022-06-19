@@ -9,6 +9,5 @@ api = Api(app)
 api.add_resource(Pets, '/pets')  # '/users' is our entry point for Users
 api.add_resource(Settings, '/settings') 
 
-
 if __name__ == '__main__':
     app.run()  # run our Flask app

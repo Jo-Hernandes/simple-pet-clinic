@@ -1,22 +1,19 @@
 package com.jonathas.httpservice.model
 
 data class ApiResponse<T>(
-
     val data: T? = null,
-
     val error: ApiResponseError? = null
-
 )
 
-sealed class ApiResponseError() {
+sealed class ApiResponseError {
 
-    object empty : ApiResponseError()
+    object Empty : ApiResponseError()
 
-    object noConnection : ApiResponseError()
+    object NoConnection : ApiResponseError()
 
-    object notFound : ApiResponseError()
+    object NotFound : ApiResponseError()
 
-    object internalServerError : ApiResponseError()
+    object InternalServerError : ApiResponseError()
 
-    object unknown : ApiResponseError()
+    object Unknown : ApiResponseError()
 }

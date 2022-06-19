@@ -1,3 +1,3 @@
 # Built application files
-api-server/.DS_Store
-api-server/__pycache__/
+/.DS_Store
+/__pycache__/

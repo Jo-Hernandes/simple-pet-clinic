@@ -1,7 +1,11 @@
+
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+
 }
+
+apply plugin: "kotlinx-serialization"
 
 android {
     compileSdkVersion build_versions.target_sdk
@@ -13,7 +17,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField 'String', 'API_ADDRESS_URL', '"https://127.0.0.1"'
+        buildConfigField 'String', 'API_ADDRESS_URL', '"http://127.0.0.1:5000"'
         buildConfigField 'long', 'REQUEST_TIMEOUT_S', '10'
     }
 
@@ -36,6 +40,7 @@ dependencies {
 
     implementation deps.okhttp.okhttp
     implementation deps.okhttp.interceptor
+    implementation deps.kotlinx.serialize
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.junit_ext
