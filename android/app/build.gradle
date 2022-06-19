@@ -51,11 +51,16 @@ dependencies {
 
     implementation deps.androidx.core
     implementation deps.androidx.material
+    implementation deps.androidx.material_window
     implementation deps.androidx.runtime
     implementation deps.androidx.activity_compose
+    implementation deps.androidx.splash
 
     implementation deps.compose.ui
     implementation deps.compose.tooling
+    implementation deps.compose.navigation
+    implementation 'androidx.compose.material:material:1.2.0-rc01'
+//    implementation deps.compose.material
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.junit_ext
