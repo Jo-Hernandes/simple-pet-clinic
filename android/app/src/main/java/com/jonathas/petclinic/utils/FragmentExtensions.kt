@@ -7,6 +7,7 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.jonathas.petclinic.R
 import kotlin.properties.ReadOnlyProperty
@@ -104,3 +105,17 @@ fun showSnackbar(
             view.setBackgroundColor(context.getColor(R.color.wild_blue))
             show()
         }
+
+fun Fragment.showDialog(
+    @StringRes title: Int,
+    @StringRes message: Int,
+    @StringRes buttonText : Int
+) = context?.let {
+    MaterialAlertDialogBuilder(it, com.google.android.material.R.style.MaterialAlertDialog_Material3).apply {
+        setTitle(title)
+        setMessage(message)
+        setPositiveButton(buttonText, null)
+        create()
+        show()
+    }
+}

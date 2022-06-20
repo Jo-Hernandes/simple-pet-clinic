@@ -9,5 +9,9 @@
     <string name="error_server_error">Internal Server Error</string>
     <string name="error_no_connection">Cannot establish connection</string>
     <string name="error_not_found">Cannot find URL</string>
-    <string name="error_unknown">Something failed</string>
+    <string name="error_unknown">Something went wrong</string>
+    <string name="button_open_text">Thank you for getting in touch with us. We’ll get back to you as soon as possible</string>
+    <string name="button_closed_text">Work hours has ended. Please contact us again on the next work day</string>
+    <string name="alert_title">Message</string>
+    <string name="alert_close">close</string>
 </resources>

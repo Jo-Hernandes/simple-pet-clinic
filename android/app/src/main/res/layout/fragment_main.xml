@@ -34,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/wild_blue"
+                android:onClick="@{() -> viewModel.handleButtonPress()}"
                 android:text="@string/button_call"
                 tools:text="call" />
 
@@ -48,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/tea_green"
+                android:onClick="@{() -> viewModel.handleButtonPress()}"
                 android:text="@string/button_chat"
                 tools:text="chat" />
 

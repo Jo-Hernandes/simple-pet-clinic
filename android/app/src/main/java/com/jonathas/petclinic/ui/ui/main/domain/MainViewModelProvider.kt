@@ -11,7 +11,8 @@ class MainViewModelProvider : ViewModelProvider.Factory {
         val useCaseProvider = UseCaseProvider(ServiceModule.getRestServiceRepository())
         return MainViewModel(
             fetchPetListUseCase = useCaseProvider.fetchPetsUseCase,
-            fetchSettingsUseCase = useCaseProvider.fetchSettingsUseCase
+            fetchSettingsUseCase = useCaseProvider.fetchSettingsUseCase,
+            isOpenUseCase = IsOpenUseCase()
         ) as T
     }
 }

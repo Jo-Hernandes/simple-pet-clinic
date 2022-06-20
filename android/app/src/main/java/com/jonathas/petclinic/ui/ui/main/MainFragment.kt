@@ -11,6 +11,7 @@ import com.jonathas.petclinic.R
 import com.jonathas.petclinic.databinding.FragmentMainBinding
 import com.jonathas.petclinic.ui.ui.main.domain.MainViewModelProvider
 import com.jonathas.petclinic.utils.lazyViewLifecycleAwareProperty
+import com.jonathas.petclinic.utils.showDialog
 import com.jonathas.petclinic.utils.showSnackbar
 import com.jonathas.petclinic.utils.viewLifecycleAwareProperty
 
@@ -66,6 +67,14 @@ class MainFragment : Fragment() {
                     ApiResponseError.Unknown -> R.string.error_unknown
                 }
             ) { viewModel.loadPetList() }
+        }
+
+        showAlert.observe(viewLifecycleOwner) {
+            showDialog(
+                title = R.string.alert_title,
+                buttonText = R.string.alert_close,
+                message = it
+            )
         }
     }
 }
