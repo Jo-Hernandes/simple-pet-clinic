@@ -26,17 +26,13 @@ class MainActivity : AppCompatActivity() {
             installSplashScreen().apply {
                 setKeepOnScreenCondition { show }
             }
-            delay(2000)
+            delay(5000)
             show = viewModel.loadSettings()
-        }
 
+        }
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
-                .commitNow()
-        }
+
     }
 }

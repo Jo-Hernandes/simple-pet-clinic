@@ -11,17 +11,6 @@ class IsOpenUseCase {
     private lateinit var closeTime: LocalTime
     private lateinit var currentWorkRange: IntRange
 
-/*
-      workdays abbreviation
-      M - Monday
-      T or Tu - Tuesday
-      W - Wednesday
-      Th or R - Thursday
-      F - Friday
-      S - Saturday
-      S or U - Sunday
-*/
-
     private val workDays: HashMap<Char, DayOfWeek> = hashMapOf(
         'M' to DayOfWeek.MONDAY,
         'T' to DayOfWeek.TUESDAY,
@@ -31,7 +20,6 @@ class IsOpenUseCase {
         'S' to DayOfWeek.SATURDAY,
         'U' to DayOfWeek.SUNDAY,
     )
-
 
     operator fun invoke(currentDate: LocalDate, currentTime: LocalTime) =
         currentWorkRange.contains(currentDate.dayOfWeek.value) &&

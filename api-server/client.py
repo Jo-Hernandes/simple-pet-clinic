@@ -1,11 +1,11 @@
 
 from flask import Flask
-from flask_restful import Resource, Api, reqparse
+from flask_restful import Api
 from paths import Pets, Settings
 
 app = Flask(__name__)
 api = Api(app)
-    
+
 api.add_resource(Pets, '/pets')  # '/users' is our entry point for Users
 api.add_resource(Settings, '/settings') 
 

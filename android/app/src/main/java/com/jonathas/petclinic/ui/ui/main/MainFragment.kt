@@ -6,7 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.jonathas.httpservice.model.ApiResponseError
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.jonathas.petclinic.R
 import com.jonathas.petclinic.databinding.FragmentMainBinding
 import com.jonathas.petclinic.ui.ui.main.domain.MainViewModelProvider
@@ -17,10 +18,6 @@ import com.jonathas.petclinic.utils.viewLifecycleAwareProperty
 
 class MainFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
     private val viewModel: MainViewModel by activityViewModels { MainViewModelProvider() }
 
     private var binding: FragmentMainBinding by viewLifecycleAwareProperty()
@@ -28,6 +25,8 @@ class MainFragment : Fragment() {
     private val petListAdapter: PetsAdapter by lazyViewLifecycleAwareProperty {
         PetsAdapter(viewModel)
     }
+
+    private val navController: NavController get() = findNavController()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,14 +58,12 @@ class MainFragment : Fragment() {
             showSnackbar(
                 anchorView = binding.root,
                 actionText = R.string.button_retry,
-                textRes = when (it) {
-                    ApiResponseError.Empty -> R.string.error_empty
-                    ApiResponseError.InternalServerError -> R.string.error_server_error
-                    ApiResponseError.NoConnection -> R.string.error_no_connection
-                    ApiResponseError.NotFound -> R.string.error_not_found
-                    ApiResponseError.Unknown -> R.string.error_unknown
-                }
+                textRes = it
             ) { viewModel.loadPetList() }
+        }
+
+        showErrorFragment.observe(viewLifecycleOwner) {
+            navController.navigate(MainFragmentDirections.actionShowError(getString(it)))
         }
 
         showAlert.observe(viewLifecycleOwner) {

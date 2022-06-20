@@ -64,7 +64,7 @@ deps.kotlinx = kotlinx
 ext.deps = deps
 
 def build_versions = [:]
-build_versions.min_sdk = 32
+build_versions.min_sdk = 28
 build_versions.target_sdk = 32
 ext.build_versions = build_versions
 

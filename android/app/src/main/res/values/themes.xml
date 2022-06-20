@@ -22,4 +22,13 @@
         <item name="cornerFamily">rounded</item>
     </style>
 
+    <style name="Theme.PetClinic.Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textColor">@color/powder</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:padding">@dimen/margin_default_double_extended</item>
+    </style>
+
+    <dimen name="text_title">26sp</dimen>
 </resources>

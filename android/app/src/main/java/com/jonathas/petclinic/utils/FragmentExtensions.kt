@@ -1,10 +1,8 @@
 package com.jonathas.petclinic.utils
 
-import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.annotation.MainThread
 import androidx.annotation.StringRes
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

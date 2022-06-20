@@ -2,7 +2,11 @@ buildscript {
     apply from: 'versions.gradle'
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-serialization:1.5.31"
+        def nav_version = "2.5.0-rc02"
+
+        classpath "org.jetbrains.kotlin:kotlin-serialization:1.7.0"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+
     }
 
 }

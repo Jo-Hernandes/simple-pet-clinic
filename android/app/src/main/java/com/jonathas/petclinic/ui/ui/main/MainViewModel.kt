@@ -1,6 +1,5 @@
 package com.jonathas.petclinic.ui.ui.main
 
-import android.icu.util.Calendar
 import androidx.lifecycle.*
 import com.jonathas.httpservice.model.ApiResponseError
 import com.jonathas.httpservice.model.PetModel
@@ -8,6 +7,8 @@ import com.jonathas.httpservice.model.SettingsModel
 import com.jonathas.petclinic.R
 import com.jonathas.petclinic.models.PetItemModel
 import com.jonathas.petclinic.models.CurrentSettingsModel
+import com.jonathas.petclinic.ui.ui.error.SettingsErrorHandler
+import com.jonathas.petclinic.ui.ui.main.domain.ErrorToMessageMapper
 import com.jonathas.petclinic.ui.ui.main.domain.FetchPetListUseCase
 import com.jonathas.petclinic.ui.ui.main.domain.FetchSettingsUseCase
 import com.jonathas.petclinic.ui.ui.main.domain.IsOpenUseCase
@@ -22,7 +23,7 @@ class MainViewModel(
     private val fetchPetListUseCase: FetchPetListUseCase,
     private val fetchSettingsUseCase: FetchSettingsUseCase,
     private val isOpenUseCase: IsOpenUseCase
-) : ViewModel() {
+) : ViewModel(), SettingsErrorHandler {
 
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(true)
     val isLoading: LiveData<Boolean> get() = _isLoading
@@ -37,10 +38,25 @@ class MainViewModel(
         get() = Transformations.map(_currentSettings, fetchSettingsUseCase::mapData)
 
     private val _showErrorSnackbar: SingleLiveEvent<ApiResponseError> = SingleLiveEvent()
-    val showErrorSnackbar: LiveData<ApiResponseError> get() = _showErrorSnackbar
+    val showErrorSnackbar: LiveData<Int>
+        get() = Transformations.map(_showErrorSnackbar) {
+            ErrorToMessageMapper.getMessage(it)
+        }
 
     private val _showAlert: SingleLiveEvent<Int> = SingleLiveEvent()
     val showAlert: LiveData<Int> get() = _showAlert
+
+    private val _showErrorFragment: SingleLiveEvent<ApiResponseError> = SingleLiveEvent()
+    val showErrorFragment: LiveData<Int>
+        get() = Transformations.map(_showErrorFragment) {
+            ErrorToMessageMapper.getMessage(it)
+        }
+
+    private val _showLoading: MutableLiveData<Boolean> = MutableLiveData()
+    override val showLoading: LiveData<Boolean> get() = _showLoading
+
+    private val _dismissError: SingleLiveEvent<Unit> = SingleLiveEvent()
+    val dismissError: LiveData<Unit> get() = _dismissError
 
     fun loadPetList() {
         viewModelScope.launch {
@@ -65,14 +81,24 @@ class MainViewModel(
         )
     }
 
-    suspend fun loadSettings(): Boolean {
-        withContext(Dispatchers.IO) {
-            val response = fetchSettingsUseCase()
-            response.data?.let {
-                _currentSettings.postValue(it)
-                isOpenUseCase.parseWorkHours(it.workHours)
-            }
+    suspend fun loadSettings(): Boolean = withContext(Dispatchers.IO) {
+        val response = fetchSettingsUseCase()
+        response.data?.let {
+            _currentSettings.postValue(it)
+            isOpenUseCase.parseWorkHours(it.workHours)
+        } ?: response.error?.let {
+            _showErrorFragment.postValue(it)
         }
-        return true
+        return@withContext response.data != null
+    }
+
+    override fun onRetryPressed() {
+        _showLoading.postValue(true)
+        viewModelScope.launch {
+            if (loadSettings()) {
+                _dismissError.call()
+            }
+            _showLoading.postValue(false)
+        }
     }
 }
