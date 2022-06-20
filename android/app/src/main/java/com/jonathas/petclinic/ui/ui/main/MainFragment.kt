@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -58,28 +59,33 @@ class MainFragment : Fragment() {
             petListAdapter.submitList(it)
         }
 
-        showErrorSnackbar.observe(viewLifecycleOwner) {
-            showSnackbar(
-                anchorView = binding.root,
-                actionText = R.string.button_retry,
-                textRes = it
-            ) { viewModel.loadPetList() }
-        }
-
-        showErrorFragment.observe(viewLifecycleOwner) {
-            navController.navigate(MainFragmentDirections.actionShowError(getString(it)))
-        }
-
-        showAlert.observe(viewLifecycleOwner) {
-            showDialog(
-                title = R.string.alert_title,
-                buttonText = R.string.alert_close,
-                message = it
-            )
-        }
-
-        showWebview.observe(viewLifecycleOwner){
-            navController.navigate(MainFragmentDirections.actionShowWebview(it))
+        screenEvent.observe(viewLifecycleOwner) { event ->
+            when (event) {
+                is MainScreenEvent.ShowAlert -> showAlert(event.message)
+                is MainScreenEvent.ShowErrorScreen -> showErrorScreen(event.message)
+                is MainScreenEvent.ShowSnackBar -> showRetrySnackbar(event.message)
+                is MainScreenEvent.ShowWebSContent -> showWebContent(event.contentUrl)
+                else -> Unit
+            }
         }
     }
+
+    private fun showAlert(@StringRes message: Int) = showDialog(
+        title = R.string.alert_title,
+        buttonText = R.string.alert_close,
+        message = message
+    )
+
+    private fun showErrorScreen(@StringRes message: Int) =
+        navController.navigate(MainFragmentDirections.actionShowError(getString(message)))
+
+    private fun showRetrySnackbar(@StringRes message: Int) = showSnackbar(
+        anchorView = binding.root,
+        actionText = R.string.button_retry,
+        textRes = message
+    ) { viewModel.loadPetList() }
+
+    private fun showWebContent(contentUrl: String) =
+        navController.navigate(MainFragmentDirections.actionShowWebview(contentUrl))
+
 }

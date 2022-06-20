@@ -58,29 +58,23 @@ dependencies {
     implementation project(":HttpService")
 
     implementation deps.androidx.core
-    implementation deps.androidx.runtime
     implementation deps.androidx.splash
+    implementation deps.androidx.material
 
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation deps.lifecycle.livedata
+    implementation deps.lifecycle.viewmodel
 
-    def nav_version = "2.5.0-rc02"
-    def lifecycle_version = "2.5.0-rc02"
+    implementation deps.navigation.ui
+    implementation deps.navigation.fragment
 
+    implementation deps.androidx.swipe_refresh
 
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation deps.androidx.app_compat
+    implementation deps.androidx.constraint_layout
+    implementation deps.androidx.card_layout
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.junit_ext
     androidTestImplementation deps.test.espresso
-    androidTestImplementation deps.compose.testing
 
 }

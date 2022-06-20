@@ -10,6 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.jonathas.petclinic.databinding.FragmentSettingsErrorBinding
+import com.jonathas.petclinic.ui.ui.main.MainScreenEvent
 import com.jonathas.petclinic.ui.ui.main.MainViewModel
 import com.jonathas.petclinic.ui.ui.main.domain.MainViewModelProvider
 
@@ -42,8 +43,11 @@ class SettingsErrorFragment : Fragment() {
     }
 
     private fun observeData() = with(viewModel) {
-        dismissError.observe(viewLifecycleOwner) {
-            navController.navigateUp()
+        screenEvent.observe(viewLifecycleOwner) {
+            if (it is MainScreenEvent.DismissError) {
+                navController.navigateUp()
+            }
         }
     }
+
 }
