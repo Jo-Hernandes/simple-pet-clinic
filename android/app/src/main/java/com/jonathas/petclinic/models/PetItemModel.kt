@@ -1,0 +1,6 @@
+package com.jonathas.petclinic.models
+
+data class PetItemModel(
+    val imageUrl: String,
+    val title : String
+)

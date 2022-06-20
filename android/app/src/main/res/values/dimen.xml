@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="min_clickable_area">48dp</dimen>
+    <dimen name="margin_default_half">4dp</dimen>
+    <dimen name="margin_default">8dp</dimen>
+    <dimen name="margin_default_double">16dp</dimen>
+    <dimen name="margin_default_double_extended">22dp</dimen>
+
+
+    <dimen name="text_header">18sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+
+</resources>

@@ -1,7 +1,12 @@
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion build_versions.target_sdk
@@ -32,35 +37,47 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        compose true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion compose_version
-    }
+
+
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
+    buildFeatures {
+        dataBinding true
+    }
 }
+
+
 
 dependencies {
 
     implementation project(":HttpService")
 
     implementation deps.androidx.core
-    implementation deps.androidx.material
     implementation deps.androidx.runtime
-    implementation deps.androidx.activity_compose
+    implementation deps.androidx.splash
 
-    implementation deps.compose.ui
-    implementation deps.compose.tooling
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    def nav_version = "2.4.2"
+    def lifecycle_version = "2.3.1"
+
+
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.junit_ext
     androidTestImplementation deps.test.espresso
     androidTestImplementation deps.compose.testing
-    debugImplementation deps.compose.manifest
 
 }

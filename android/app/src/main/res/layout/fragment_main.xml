@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.jonathas.petclinic.ui.ui.main.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/margin_default">
+
+        <LinearLayout
+            android:id="@+id/ll_contact_buttons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default_double"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Theme.PetClinic.Button"
+                goneUnless="@{viewModel.currentSettings.showCallButton}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/wild_blue"
+                android:text="@string/button_call"
+                tools:text="call" />
+
+            <Space
+                android:layout_width="@dimen/margin_default_half"
+                android:layout_height="0dp" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Theme.PetClinic.Button"
+                goneUnless="@{viewModel.currentSettings.showChatButton}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/tea_green"
+                android:text="@string/button_chat"
+                tools:text="chat" />
+
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_clinic_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_default_half"
+            android:clipToOutline="true"
+            app:cardElevation="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_contact_buttons"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_default"
+                android:text="@{@string/work_hours(viewModel.currentSettings.bannerText)}"
+                android:textAlignment="center"
+                tools:text="Office Hours : M-F 10:00 - 18:00" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_clinic_info"
+            app:onRefreshListener="@{() -> viewModel.loadPetList()}"
+            app:refreshing="@{viewModel.isLoading()}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_pets_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_pet_info" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
