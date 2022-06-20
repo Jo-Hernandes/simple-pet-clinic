@@ -63,6 +63,7 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.6.1'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     def nav_version = "2.5.0-rc02"
     def lifecycle_version = "2.5.0-rc02"

@@ -58,6 +58,9 @@ class MainViewModel(
     private val _dismissError: SingleLiveEvent<Unit> = SingleLiveEvent()
     val dismissError: LiveData<Unit> get() = _dismissError
 
+    private val _showWebview: SingleLiveEvent<String> = SingleLiveEvent()
+    val showWebview: LiveData<String> get() = _showWebview
+
     fun loadPetList() {
         viewModelScope.launch {
             _isLoading.postValue(true)
@@ -101,4 +104,8 @@ class MainViewModel(
             _showLoading.postValue(false)
         }
     }
+
+    fun handlePetSelected(pet: PetItemModel) =
+        _showWebview.postValue(pet.contentUrl)
+
 }

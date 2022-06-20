@@ -14,6 +14,7 @@ class FetchPetListUseCase(
     fun mapData(data: List<PetModel>) = data.map { model ->
         PetItemModel(
             model.imageUrl,
+            model.contentUrl,
             model.title
         )
     }

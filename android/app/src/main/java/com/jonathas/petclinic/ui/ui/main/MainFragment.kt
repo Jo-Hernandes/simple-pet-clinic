@@ -32,7 +32,11 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View =
-        FragmentMainBinding.inflate(inflater).apply {
+        FragmentMainBinding.inflate(
+            inflater,
+            container,
+            false
+        ).apply {
             lifecycleOwner = viewLifecycleOwner
             binding = this
             binding.viewModel = this@MainFragment.viewModel
@@ -72,6 +76,10 @@ class MainFragment : Fragment() {
                 buttonText = R.string.alert_close,
                 message = it
             )
+        }
+
+        showWebview.observe(viewLifecycleOwner){
+            navController.navigate(MainFragmentDirections.actionShowWebview(it))
         }
     }
 }

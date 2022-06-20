@@ -14,4 +14,5 @@
     <string name="button_closed_text">Work hours has ended. Please contact us again on the next work day</string>
     <string name="alert_title">Message</string>
     <string name="alert_close">close</string>
+    <string name="webview_title">Clinic\'s Webview</string>
 </resources>

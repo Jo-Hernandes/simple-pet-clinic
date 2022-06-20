@@ -43,6 +43,7 @@ class PetsAdapter(
         fun bindData(pet: PetItemModel) {
             binding.petItem = pet
             binding.scope = viewModel.viewModelScope
+            binding.root.setOnClickListener { viewModel.handlePetSelected(pet) }
             binding.executePendingBindings()
         }
     }
