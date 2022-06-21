@@ -21,11 +21,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
-import org.junit.After
-import org.junit.Test
+import org.junit.*
 import org.junit.Assert.*
-import org.junit.Before
-import org.junit.Rule
 
 @ExperimentalCoroutinesApi
 class MainViewModelTest {
@@ -33,7 +30,7 @@ class MainViewModelTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-    lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: MainViewModel
 
     @MockK
     lateinit var fetchPetListUseCase: FetchPetListUseCase
@@ -48,7 +45,7 @@ class MainViewModelTest {
     companion object {
         private val testDispatcher = UnconfinedTestDispatcher(TestCoroutineScheduler())
 
-        object testDispatcherProvider : DispatcherProvider {
+        object TestDispatcherProvider : DispatcherProvider {
 
             override fun main(): CoroutineDispatcher = testDispatcher
             override fun default(): CoroutineDispatcher = testDispatcher
@@ -66,7 +63,7 @@ class MainViewModelTest {
             fetchPetListUseCase = fetchPetListUseCase,
             fetchSettingsUseCase = fetchSettingsUseCase,
             isOpenUseCase = isOpenUseCase,
-            dispatchers = testDispatcherProvider
+            dispatchers = TestDispatcherProvider
         )
     }
 
