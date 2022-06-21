@@ -17,3 +17,5 @@ object ErrorToMessageMapper {
     )
 
 }
+
+fun ApiResponseError.asMessage() = ErrorToMessageMapper.getMessage(this)

@@ -16,6 +16,8 @@ versions.navigation = "2.5.0-rc02"
 versions.app_compat = "1.4.2"
 versions.constraint_layout = "2.1.4"
 versions.card_layout = "1.0.0"
+versions.mockk = "1.12.4"
+versions.test_core = "2.1.0"
 
 def deps = [:]
 
@@ -48,6 +50,9 @@ def test = [:]
 test.junit = "junit:junit:$versions.junit"
 test.junit_ext = "androidx.test.ext:junit:$versions.junit_ext"
 test.espresso = "androidx.test.espresso:espresso-core:$versions.espresso"
+test.mockk = "io.mockk:mockk:$versions.mockk"
+test.core = "androidx.arch.core:core-testing:$versions.test_core"
+test.coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.3"
 deps.test = test
 
 def okhttp = [:]

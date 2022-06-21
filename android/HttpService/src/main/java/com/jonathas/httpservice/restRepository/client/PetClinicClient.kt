@@ -12,6 +12,7 @@ import kotlinx.serialization.*
 import kotlinx.serialization.json.Json
 
 
+@ExperimentalSerializationApi
 class PetClinicClient : BaseClientBuilder<PetClinicRepository>() {
 
     private fun buildGetRequest(path: String) = Request.Builder()

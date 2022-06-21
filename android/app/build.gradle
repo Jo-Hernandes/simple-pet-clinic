@@ -73,7 +73,10 @@ dependencies {
     implementation deps.androidx.constraint_layout
     implementation deps.androidx.card_layout
 
+    testImplementation deps.test.core
     testImplementation deps.test.junit
+    testImplementation deps.test.coroutine
+    testImplementation deps.test.mockk
     androidTestImplementation deps.test.junit_ext
     androidTestImplementation deps.test.espresso
 

@@ -61,19 +61,22 @@ class MainFragment : Fragment() {
 
         screenEvent.observe(viewLifecycleOwner) { event ->
             when (event) {
-                is MainScreenEvent.ShowAlert -> showAlert(event.message)
-                is MainScreenEvent.ShowErrorScreen -> showErrorScreen(event.message)
+                is MainScreenEvent.ShowCommunicationAlert -> showCommunicationAlert(event.isWorkHour)
+                is MainScreenEvent.ShowErrorScreen -> showErrorScreen(event.apiError.asMessage())
                 is MainScreenEvent.ShowSnackBar -> showRetrySnackbar(event.message)
-                is MainScreenEvent.ShowWebSContent -> showWebContent(event.contentUrl)
+                is MainScreenEvent.ShowWebContent -> showWebContent(event.contentUrl)
                 else -> Unit
             }
         }
     }
 
-    private fun showAlert(@StringRes message: Int) = showDialog(
+    private fun showCommunicationAlert(isWorkHour: Boolean) = showDialog(
         title = R.string.alert_title,
         buttonText = R.string.alert_close,
-        message = message
+        message = when (isWorkHour) {
+            true -> R.string.button_open_text
+            false -> R.string.button_closed_text
+        }
     )
 
     private fun showErrorScreen(@StringRes message: Int) =
