@@ -57,7 +57,6 @@ deps.test = test
 
 def okhttp = [:]
 okhttp.okhttp = "com.squareup.okhttp3:okhttp:$versions.okhttp"
-okhttp.okhttp_mock = "com.squareup.okhttp3:mockwebserver:$versions.okhttp"
 okhttp.interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
 deps.okhttp = okhttp
 
