@@ -4,13 +4,13 @@ import androidx.lifecycle.*
 import com.jonathas.httpservice.model.ApiResponseError
 import com.jonathas.httpservice.model.PetModel
 import com.jonathas.httpservice.model.SettingsModel
-import com.jonathas.petclinic.models.PetItemModel
 import com.jonathas.petclinic.models.CurrentSettingsModel
+import com.jonathas.petclinic.models.PetItemModel
 import com.jonathas.petclinic.ui.ui.error.SettingsErrorHandler
 import com.jonathas.petclinic.ui.ui.main.domain.ErrorToMessageMapper
-import com.jonathas.petclinic.ui.ui.main.domain.FetchPetListUseCase
-import com.jonathas.petclinic.ui.ui.main.domain.FetchSettingsUseCase
-import com.jonathas.petclinic.ui.ui.main.domain.IsOpenUseCase
+import com.jonathas.petclinic.ui.ui.main.usecases.FetchPetListUseCase
+import com.jonathas.petclinic.ui.ui.main.usecases.FetchSettingsUseCase
+import com.jonathas.petclinic.ui.ui.main.usecases.IsOpenUseCase
 import com.jonathas.petclinic.utils.DispatcherProvider
 import com.jonathas.petclinic.utils.SingleLiveEvent
 import kotlinx.coroutines.launch
@@ -56,7 +56,6 @@ class MainViewModel(
         _isLoading.postValue(false)
     }
 
-
     fun handleButtonPress() = _screenEvent.postValue(
         MainScreenEvent.ShowCommunicationAlert(
             isOpenUseCase(
@@ -92,4 +91,3 @@ class MainViewModel(
 }
 
 fun ApiResponseError.asMessage() = ErrorToMessageMapper.getMessage(this)
-

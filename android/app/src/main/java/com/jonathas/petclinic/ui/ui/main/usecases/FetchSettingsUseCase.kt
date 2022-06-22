@@ -1,4 +1,4 @@
-package com.jonathas.petclinic.ui.ui.main.domain
+package com.jonathas.petclinic.ui.ui.main.usecases
 
 import com.jonathas.httpservice.model.SettingsModel
 import com.jonathas.httpservice.restRepository.PetClinicRepository
@@ -11,7 +11,7 @@ class FetchSettingsUseCase(
     operator fun invoke() =
         dataSource.fetchConfig()
 
-    fun mapData(data : SettingsModel) = CurrentSettingsModel(
+    fun mapData(data: SettingsModel) = CurrentSettingsModel(
         showCallButton = data.isCallEnabled ?: false,
         showChatButton = data.isCallEnabled ?: false,
         bannerText = data.workHours

@@ -1,11 +1,9 @@
 package com.jonathas.petclinic.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.lifecycleScope
 import com.jonathas.petclinic.R
-import com.jonathas.petclinic.ui.ui.main.MainFragment
 import com.jonathas.petclinic.ui.ui.main.MainViewModel
 import com.jonathas.petclinic.ui.ui.main.domain.MainViewModelProvider
 import com.jonathas.petclinic.utils.viewModel
@@ -20,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModel(MainViewModelProvider())
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         scope.launch {
             var show = false
             installSplashScreen().apply {
@@ -28,11 +25,9 @@ class MainActivity : AppCompatActivity() {
             }
             delay(5000)
             show = viewModel.loadSettings()
-
         }
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-
     }
 }

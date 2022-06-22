@@ -14,7 +14,8 @@ class WebContentFragment : Fragment() {
     private val fragmentArgs: WebContentFragmentArgs by navArgs()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View =
         FragmentWebContentBinding.inflate(inflater, container, false).apply {
@@ -23,5 +24,4 @@ class WebContentFragment : Fragment() {
                 loadUrl(fragmentArgs.url)
             }
         }.root
-
 }

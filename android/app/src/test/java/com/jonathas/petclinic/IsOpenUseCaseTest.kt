@@ -1,9 +1,9 @@
 package com.jonathas.petclinic
 
-import com.jonathas.petclinic.ui.ui.main.domain.IsOpenUseCase
-import org.junit.Test
+import com.jonathas.petclinic.ui.ui.main.usecases.IsOpenUseCase
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Test
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -36,17 +36,16 @@ class IsOpenUseCaseTest {
     }
 
     @Test
-    fun `throw error for wrong input for hours`(){
+    fun `throw error for wrong input for hours`() {
         val workTime = "M-F 48:00 - 18:00"
         assertThrows(Exception::class.java) { useCase.parseWorkHours(workTime) }
     }
 
     @Test
-    fun `throw error for no input for hours`(){
+    fun `throw error for no input for hours`() {
         val workTime = "M-F"
         assertThrows(Exception::class.java) { useCase.parseWorkHours(workTime) }
     }
-
 
     @Test
     fun `returns true for open time accordingly to worktime`() {

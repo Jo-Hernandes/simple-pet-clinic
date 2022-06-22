@@ -23,7 +23,8 @@ class SettingsErrorFragment : Fragment() {
     private val navController: NavController get() = findNavController()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = FragmentSettingsErrorBinding.inflate(
         inflater,
@@ -33,7 +34,6 @@ class SettingsErrorFragment : Fragment() {
         lifecycleOwner = viewLifecycleOwner
         handler = viewModel
         errorText = fragmentArgs.message
-
     }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,5 +49,4 @@ class SettingsErrorFragment : Fragment() {
             }
         }
     }
-
 }

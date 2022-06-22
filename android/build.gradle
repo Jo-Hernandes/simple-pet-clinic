@@ -2,12 +2,14 @@ buildscript {
     apply from: 'versions.gradle'
 
     dependencies {
+        classpath deps.gradle.tools
         classpath deps.gradle.serialization
         classpath deps.gradle.navigation
     }
 }
 
 plugins {
+    id "org.jlleitschuh.gradle.ktlint" version "10.3.0"
     id 'com.android.application' version '7.2.1' apply false
     id 'com.android.library' version '7.2.1' apply false
     id 'org.jetbrains.kotlin.android' version '1.7.0' apply false
@@ -15,5 +17,10 @@ plugins {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ktlint {
+    android.set(true)
+    outputColorName.set("RED")
 }
 

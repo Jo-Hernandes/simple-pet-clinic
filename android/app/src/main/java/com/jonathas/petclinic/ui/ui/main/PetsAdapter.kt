@@ -2,7 +2,6 @@ package com.jonathas.petclinic.ui.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -21,7 +20,7 @@ class PetsAdapter(
 
         override fun areContentsTheSame(oldItem: PetItemModel, newItem: PetItemModel): Boolean {
             return oldItem.title == newItem.title &&
-                    oldItem.imageUrl == newItem.imageUrl
+                oldItem.imageUrl == newItem.imageUrl
         }
     }
 
@@ -47,5 +46,4 @@ class PetsAdapter(
             binding.executePendingBindings()
         }
     }
-
 }

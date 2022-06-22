@@ -1,4 +1,4 @@
-package com.jonathas.petclinic.ui.ui.main.domain
+package com.jonathas.petclinic.ui.ui.main.usecases
 
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -18,13 +18,15 @@ class IsOpenUseCase {
         'R' to DayOfWeek.THURSDAY,
         'F' to DayOfWeek.FRIDAY,
         'S' to DayOfWeek.SATURDAY,
-        'U' to DayOfWeek.SUNDAY,
+        'U' to DayOfWeek.SUNDAY
     )
 
     operator fun invoke(currentDate: LocalDate, currentTime: LocalTime) =
         currentWorkRange.contains(currentDate.dayOfWeek.value) &&
-                (currentTime.isAfter(openTime) &&
-                        currentTime.isBefore(closeTime))
+            (
+                currentTime.isAfter(openTime) &&
+                    currentTime.isBefore(closeTime)
+                )
 
     fun parseWorkHours(workTimeString: String) {
         Regex(DAYS_REGEX).find(workTimeString)?.value?.let { workDays ->
@@ -51,5 +53,4 @@ class IsOpenUseCase {
         private const val DAYS_REGEX = "($WEEKDAY_REGEX-$WEEKDAY_REGEX)"
         private const val HOUR_REGEX = "\\d{1,2}:\\d{2}"
     }
-
 }

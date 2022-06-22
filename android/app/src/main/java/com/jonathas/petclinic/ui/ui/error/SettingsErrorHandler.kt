@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 
 interface SettingsErrorHandler {
 
-    val showLoading : LiveData<Boolean>
+    val showLoading: LiveData<Boolean>
 
     fun onRetryPressed()
-
 }

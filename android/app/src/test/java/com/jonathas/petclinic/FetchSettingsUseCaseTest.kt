@@ -3,13 +3,13 @@ package com.jonathas.petclinic
 import com.jonathas.httpservice.model.ApiResponse
 import com.jonathas.httpservice.model.SettingsModel
 import com.jonathas.httpservice.restRepository.PetClinicRepository
-import com.jonathas.petclinic.ui.ui.main.domain.FetchSettingsUseCase
+import com.jonathas.petclinic.ui.ui.main.usecases.FetchSettingsUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.verify
-import org.junit.Assert.*
 import org.junit.*
+import org.junit.Assert.*
 
 class FetchSettingsUseCaseTest {
 
@@ -85,6 +85,4 @@ class FetchSettingsUseCaseTest {
             mappedData.bannerText
         )
     }
-
-
 }

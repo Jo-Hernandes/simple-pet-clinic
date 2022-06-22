@@ -12,7 +12,6 @@ import kotlin.properties.ReadOnlyProperty
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-
 fun <T : Any> Fragment.viewLifecycleAwareProperty() = ViewLifecycleAwareReadWriteProperty<T>(this)
 
 class ViewLifecycleAwareReadWriteProperty<T : Any>(
@@ -82,7 +81,6 @@ class LazyViewLifecycleAwareProperty<T : Any>(
     }
 }
 
-
 fun showSnackbar(
     anchorView: View,
     @StringRes textRes: Int,
@@ -107,7 +105,7 @@ fun showSnackbar(
 fun Fragment.showDialog(
     @StringRes title: Int,
     @StringRes message: Int,
-    @StringRes buttonText : Int
+    @StringRes buttonText: Int
 ) = context?.let {
     MaterialAlertDialogBuilder(it, com.google.android.material.R.style.MaterialAlertDialog_Material3).apply {
         setTitle(title)

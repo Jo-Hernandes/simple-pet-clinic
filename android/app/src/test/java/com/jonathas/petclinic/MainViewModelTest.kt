@@ -9,9 +9,9 @@ import com.jonathas.petclinic.models.CurrentSettingsModel
 import com.jonathas.petclinic.models.PetItemModel
 import com.jonathas.petclinic.ui.ui.main.MainScreenEvent
 import com.jonathas.petclinic.ui.ui.main.MainViewModel
-import com.jonathas.petclinic.ui.ui.main.domain.FetchPetListUseCase
-import com.jonathas.petclinic.ui.ui.main.domain.FetchSettingsUseCase
-import com.jonathas.petclinic.ui.ui.main.domain.IsOpenUseCase
+import com.jonathas.petclinic.ui.ui.main.usecases.FetchPetListUseCase
+import com.jonathas.petclinic.ui.ui.main.usecases.FetchSettingsUseCase
+import com.jonathas.petclinic.ui.ui.main.usecases.IsOpenUseCase
 import com.jonathas.petclinic.utils.DispatcherProvider
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -40,7 +40,6 @@ class MainViewModelTest {
 
     @MockK
     lateinit var isOpenUseCase: IsOpenUseCase
-
 
     companion object {
         private val testDispatcher = UnconfinedTestDispatcher(TestCoroutineScheduler())
@@ -174,7 +173,9 @@ class MainViewModelTest {
     @Test
     fun `when fetching settings, set data on correct live data`() = runTest {
         val mockedSettings = CurrentSettingsModel(
-            showCallButton = true, showChatButton = true, bannerText = ""
+            showCallButton = true,
+            showChatButton = true,
+            bannerText = ""
         )
 
         val mockedResponse = ApiResponse(data = SettingsModel())
@@ -185,7 +186,8 @@ class MainViewModelTest {
         viewModel.currentSettings.observeForever {
             assertEquals(
                 "should return the same mapped response from fetch settings usecase",
-                mockedSettings, it
+                mockedSettings,
+                it
             )
         }
     }
@@ -193,7 +195,9 @@ class MainViewModelTest {
     @Test
     fun `when fetching settings data, should parse the time on the isOpenUseCase`() = runTest {
         val mockedSettings = CurrentSettingsModel(
-            showCallButton = true, showChatButton = true, bannerText = ""
+            showCallButton = true,
+            showChatButton = true,
+            bannerText = ""
         )
 
         val apiResponse = ApiResponse(data = SettingsModel(workHours = "workhours parsing"))
@@ -208,7 +212,9 @@ class MainViewModelTest {
     @Test
     fun `when fetching settings if error, should show error screen`() = runTest {
         val mockedSettings = CurrentSettingsModel(
-            showCallButton = true, showChatButton = true, bannerText = ""
+            showCallButton = true,
+            showChatButton = true,
+            bannerText = ""
         )
         val apiError = ApiResponseError.Unknown
         every { fetchSettingsUseCase() } returns ApiResponse(error = apiError)
@@ -231,7 +237,9 @@ class MainViewModelTest {
     @Test
     fun `when retry is successful should trigger to dismiss error screen`() = runTest {
         val mockedSettings = CurrentSettingsModel(
-            showCallButton = true, showChatButton = true, bannerText = ""
+            showCallButton = true,
+            showChatButton = true,
+            bannerText = ""
         )
 
         val apiResponse = ApiResponse(data = SettingsModel(workHours = "workhours parsing"))
@@ -249,5 +257,4 @@ class MainViewModelTest {
             )
         }
     }
-
 }

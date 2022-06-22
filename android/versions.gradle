@@ -18,6 +18,7 @@ versions.constraint_layout = "2.1.4"
 versions.card_layout = "1.0.0"
 versions.mockk = "1.12.4"
 versions.test_core = "2.1.0"
+versions.gradle = "4.0.0"
 
 def deps = [:]
 
@@ -44,6 +45,7 @@ deps.navigation = navigation
 def gradle = [:]
 gradle.navigation = "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
 gradle.serialization = "org.jetbrains.kotlin:kotlin-serialization:$versions.kotlin"
+gradle.tools = "com.android.tools.build:gradle:$versions.gradle"
 deps.gradle = gradle
 
 def test = [:]

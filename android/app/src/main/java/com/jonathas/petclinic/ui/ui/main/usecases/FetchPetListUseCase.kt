@@ -1,4 +1,4 @@
-package com.jonathas.petclinic.ui.ui.main.domain
+package com.jonathas.petclinic.ui.ui.main.usecases
 
 import com.jonathas.httpservice.model.PetModel
 import com.jonathas.httpservice.restRepository.PetClinicRepository
@@ -18,5 +18,4 @@ class FetchPetListUseCase(
             model.title
         )
     }
-
 }

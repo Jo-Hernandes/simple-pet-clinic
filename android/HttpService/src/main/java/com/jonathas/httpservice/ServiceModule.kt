@@ -6,7 +6,6 @@ import com.jonathas.httpservice.restRepository.client.PetClinicClient
 class ServiceModule {
 
     companion object {
-        fun getRestServiceRepository() : PetClinicRepository = PetClinicClient().buildClient()
+        fun getRestServiceRepository(): PetClinicRepository = PetClinicClient().buildClient()
     }
-
 }

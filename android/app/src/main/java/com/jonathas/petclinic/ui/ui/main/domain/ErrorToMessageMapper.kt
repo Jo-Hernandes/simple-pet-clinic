@@ -13,9 +13,8 @@ object ErrorToMessageMapper {
         ApiResponseError.InternalServerError to R.string.error_server_error,
         ApiResponseError.NoConnection to R.string.error_no_connection,
         ApiResponseError.NotFound to R.string.error_not_found,
-        ApiResponseError.Unknown to R.string.error_unknown,
+        ApiResponseError.Unknown to R.string.error_unknown
     )
-
 }
 
 fun ApiResponseError.asMessage() = ErrorToMessageMapper.getMessage(this)
